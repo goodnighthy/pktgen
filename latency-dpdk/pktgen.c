@@ -33,6 +33,7 @@ static uint32_t _index = 0;
 u_char *chars;
 uint64_t packet_count = 0;
 uint64_t packet_bytes = 0;
+double latency = 0;
 #define MAX_LINE 100
 
 
@@ -470,7 +471,9 @@ int main(int argc, char *argv[]) {
                     count++;
                 }
             }
-            double latency = total_time / count;
+            if(count != 0) {
+                latency = total_time / count;
+            }
             _index = 0;
             printf("Average latency: %lf  \n", latency); 
         //}
